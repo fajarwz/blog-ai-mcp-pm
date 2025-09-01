@@ -20,7 +20,18 @@ tasksRouter.post("/chat", async (req, res) => {
 
     const { query } = parsed.data;
 
-    const result = await run(agent, query);
+    const systemInstruction = `Always use the current date: ${new Date().toLocaleDateString("en-GB")}.`;
+    const result = await run(agent, [
+      {
+        role: "system",
+        content: systemInstruction,
+      },
+      {
+        role: "user",
+        content: query,
+      },
+    ]);
+
     return res.json({
       data: {
         answer: result.finalOutput,

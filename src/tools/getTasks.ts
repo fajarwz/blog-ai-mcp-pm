@@ -1,8 +1,7 @@
-import { z } from "zod";
+import { config } from "../config/config.js";
 import { sheets } from "../services/googleSheetsService.js";
 import type { Task } from "../types/task.interface.js";
 import { toolResponse } from "../utils/formatters.js";
-import { config } from "../config/config.js";
 
 export const getTasksTool = {
   name: "get_tasks",
